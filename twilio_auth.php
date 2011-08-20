@@ -20,7 +20,7 @@ if ( is_admin() ){ // admin actions
 
 function twilio_auth_register_settings() { // whitelist options
   register_setting( 'twilio-auth', 'twilio_auth_AccountSid' );
-  register_setting( 'twilio-authp', 'twilio_auth_AuthToken' );
+  register_setting( 'twilio-auth', 'twilio_auth_AuthToken' );
 }
 
 /**
