@@ -10,13 +10,8 @@ Author URI: http://www.nullvariable.com
 /**
  * Queue our WordPress hooks
  */
-
-if ( is_admin() ){ // admin actions
-  add_action('admin_menu', 'twilio_auth_opts_page');
-  add_action( 'admin_init', 'twilio_auth_register_settings' );
-} else {
-  // non-admin enqueues, actions, and filters
-}
+add_action('admin_menu', 'twilio_auth_opts_page');
+add_action( 'admin_init', 'twilio_auth_register_settings' );
 
 function twilio_auth_register_settings() { // whitelist options
   register_setting( 'twilio-auth', 'twilio_auth_AccountSid' );
@@ -36,6 +31,17 @@ function twilio_auth_opts_page_render() {
 	print '<form method="post" action="options.php">';
 	settings_fields( 'twilio-auth' );
 	do_settings_fields( 'twilio-auth' ); ?>
+	<table class="form-table">
+        <tr valign="top">
+        <th scope="row"><?php __('Twilio AccountSid'); ?></th>
+        <td><input type="text" name="twilio_auth_AccountSid" value="<?php echo get_option('twilio_auth_AccountSid'); ?>" /></td>
+        </tr>
+         
+        <tr valign="top">
+        <th scope="row"><?php __('Twilio AuthToken'); ?></th>
+        <td><input type="text" name="twilio_auth_AuthToken" value="<?php echo get_option('twilio_auth_AuthToken'); ?>" /></td>
+        </tr>
+    </table>
 	<p class="submit">
 		<input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
 	</p>
