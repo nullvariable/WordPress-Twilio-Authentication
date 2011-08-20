@@ -13,14 +13,21 @@ Author URI: http://www.nullvariable.com
 add_action('admin_menu', 'twilio_auth_opts_page');
 add_action( 'admin_init', 'twilio_auth_register_settings' );
 
-function twilio_auth_register_settings() { // whitelist options
+function twilio_auth_register_settings() { // whitelist option
   register_setting( 'twilio-auth', 'twilio_auth_AccountSid' );
   register_setting( 'twilio-auth', 'twilio_auth_AuthToken' );
+  add_settings_section('twilio-auth-settings-section', 'Twilio Settings For Two Factor Authentication');
+  add_settings_field('twilio-auth-settings-field', 'twilio_auth_AccountSid', 'twilio_auth_settings_field_text', 'general', 'twilio-auth-settings-section');
+  add_settings_field('twilio-auth-settings-field', 'twilio_auth_AuthToken', 'twilio_auth_settings_field_text', 'general', 'twilio-auth-settings-section');
 }
 
+
+function twilio_auth_settings_field_text() {
+	print "settings text field";
+}
 /**
  * Add our config options page to WordPress
- */
+ *//*
 function twilio_auth_opts_page() {
   add_options_page('Twilio Two Factor','Twilio Two Factor', 'update_core', 'twilio-auth', 'twilio_auth_opts_page_render');
 }
@@ -48,5 +55,5 @@ function twilio_auth_opts_page_render() {
 	</form><?php
 	print '</div>';
 }
-
+*/
 
